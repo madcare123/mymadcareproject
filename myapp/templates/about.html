@@ -1,0 +1,67 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<body>
+	<br>
+	<!-- about section -->
+	<div class="service text-center" id="service">
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Book Appointment</h2>
+				<marquee direction="right" behavior="alternate" scrollamount="5"><h4 style="color:solid;">Here You Can Easy to Find Out Diffrents Type Of Doctors Online And You Choose Your Problem Accourding Doctors .</h4></marquee>
+				{% for i in doctors %}
+				<div class="col-md-3 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+							<img class="img-responsive" src="{{i.doctor_image.url}}" alt="">
+						</div>
+						<a href="{% url 'doctor_detail' pk=i.pk %}">
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{i.specialist|slice:":1"}}</h1>
+								</div>
+									<h3>{{i.specialist}}</h3>
+									<p>{{i.address}}</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section><!-- end of about section -->
+	<br><br><br>
+	</div>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+		<body>
+			<head>
+				<style type="text/css">
+					
+					#example {
+						width: 100px;
+
+					}
+					table, td, th{
+						padding: 10px;
+					}
+				</style>
+				<SCRIPT type="text/javascript">
+					window.history.forward();
+					function noBack() { window.history.forward(); }
+				</SCRIPT>
+				</HEAD>
+				<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+			</head>
+					
+			<br>
+			<div class="service text-center" id="service">
+			<center>
+				<section class="about text-center" id="about">
+				<div class="container">
+				<div class="row">
+				<div class="team-heading text-center">	
+				<h2>Login</h2>
+				</div>
+				</div>
+				</div>
+				</section>
+				<h3>
+					{% if msg %}
+					{{msg}}
+					{% endif %}
+				</h3>
+				<font size="5px">
+			<form name="login" method="post" action="{% url 'login' %}">
+				{% csrf_token %}
+				<table style="margin:5px;color: white">
+					<tr>
+						<td>User Type</td>
+							<td>
+								<input type="radio" name="usertype" value="patiant" required="required">&nbsp;&nbsp;&nbsp;Patiant &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="usertype" value="doctor" required="required">&nbsp;&nbsp;&nbsp;&nbsp;Doctor
+							</td>
+					</tr>	
+					<tr>
+						<td>Email</td>
+						<td><input type="text" name="email" class="form-control form-control-lg" required="required"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" name="password" class="form-control form-control-lg" required="required"></td>
+					</tr>	
+				</table> 
+				<br>
+				<input type="submit" value="Login" class="btn btn-danger" style="width:100px; font-size: 20px;">
+				<a href="{% url 'forgot_password' %}" style="color:#4a4a4a; margin-left: 20px;"><input type="button" value="Forgot Passowrd" class="btn btn-danger" style="width: 140px; font-size: 20px;"></a>
+			</form>
+			</font>
+			<br><br><br><br><br>
+			</center>
+			</div>
+						<!-- footer starts here -->
+				<footer class="footer clearfix">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6 footer-para">
+								<p>&copy;Rajeev Prajapati All right reserved</p>
+							</div>
+								<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+						</div>
+					</div>
+				</footer>
+		</body>
+</html>
+{% endblock %}

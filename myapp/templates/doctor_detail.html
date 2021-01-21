@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<body>
+	<br><br><
+	<!-- about section -->
+	<div class="service text-center" id="service" style="padding-left: 35%">
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2 style="font-size: 40px; margin-top: 30px; margin-left: -65%;">Doctor Details</h2>
+				<br><br><br>
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{doctor.specialist|slice:":1"}}</h1>
+								</div>
+									<h3>{{doctor.specialist}}</h3>
+									<hr>
+									<p style="text-align:left;">
+									Education &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.degree}}<br><br>
+									 Doctor Name &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.fname}} {{doctor.lname}}<br><br>
+									Hours&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.time_slot}}<br><br>
+									consulting Charge&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.consulting_charge}}<br><br>
+									{{doctor.address}}</p>
+									{% if request.session.email %}
+									<a href="{% url 'book_appointment' pk=doctor.pk %}"><input class="btn btn-danger" type="button" value="Book Appointment" style="padding:15px 118px; font-size: 23px; border: none;"></a>
+									{% else %}
+									<a href="{% url 'login' %}"><input class="btn btn-danger" type="button" value="Login to Book Appointment" style="padding:15px 90.5px; font-size: 23px; border: none;"></a>
+									{% endif %}
+									
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- end of about section -->
+	<br><br>
+	</div>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+{% endblock %}

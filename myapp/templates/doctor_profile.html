@@ -1,0 +1,113 @@
+{% extends 'doctor_header.html' %}
+{% block content %}
+<html>
+		<body>
+			<head>
+				<style type="text/css">
+					
+					#example {
+						width: 100px;
+
+					}
+					table, td, th{
+						padding: 5px;
+						color: white;
+					}
+				</style>
+			</head>
+					
+			<br>
+			<div class="service text-center" id="service">
+			<center><section class="about text-center" id="about">
+				<div class="container">
+				<div class="row">
+				<div class="team-heading text-center">	
+				<h2>Doctor Profile</h2>
+				</div>
+				</div>
+				</div>
+				</section>
+				<h3>
+					{% if msg %}
+					{{msg}}
+					{% endif %}
+				</h3>
+				<font size="5px">
+			<form name="doctor_profile" method="post" action="{% url 'doctor_profile' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				<table style="margin:5px;">
+					<tr>
+						<td>First Name</td>
+						<td><input type="text" name="fname" class="form-control form-control-lg" readonly="readonly" value="{{doctor.fname}}"></td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td><input type="text" name="lname" class="form-control form-control-lg" readonly="readonly" value="{{doctor.lname}}"></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="text" name="email" class="form-control form-control-lg" readonly="readonly" value="{{doctor.email}}"></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="text" name="mobile" class="form-control form-control-lg" readonly="readonly" value="{{doctor.mobile}}"></td>
+					</tr>
+					<tr>
+						<td>Speciality</td>
+						<td><input type="text" name="specialist" class="form-control form-control-lg" value="{{doctor.specialist}}"></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td><textarea rows="5" cols="22" name="address" class="form-control form-control-lg" value="">{{doctor.address}}</textarea></td>
+					</tr>
+					<tr>
+						<td>Degree</td>
+						<td><input type="text" name="degree" class="form-control form-control-lg" value="{{doctor.degree}}"></td>
+					</tr>
+					<tr>
+						<td>Consulting Charge</td>
+						<td><input type="text" name="consulting_charge" class="form-control form-control-lg" value="{{doctor.consulting_charge}}"></td>
+					</tr>
+					<tr>
+						<td>Time Slot</td>
+						<td><input type="text" name="time_slot" class="form-control form-control-lg" value="{{doctor.time_slot}}"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<img src="{{doctor.doctor_image.url}}" width="100px" height="100px">
+						</td>
+					</tr>
+					<tr>
+						<td>Doctor Image</td>
+						<td><input type="file" name="doctor_image" class="form-control form-control-lg"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input class="btn btn-danger" style="width:170px; font-size: 20px; margin-top: 30px;" type="submit" value="Update Profile"></td>
+					</tr>
+					
+				</table>
+
+			</form>
+			</font>
+			</center>
+			<br><br>
+		</div>
+						<!-- footer starts here -->
+				<footer class="footer clearfix">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6 footer-para">
+								<p>&copy;Rajeev Prajapati All right reserved</p>
+							</div>
+							<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+						</div>
+					</div>
+				</footer>
+		</body>
+</html>
+{% endblock %}

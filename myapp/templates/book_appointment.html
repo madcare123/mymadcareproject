@@ -1,0 +1,175 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		tr,td{
+			padding: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    
+    $('#appointment_date').attr('min', maxDate);
+});
+	</script>
+	<title></title>
+	<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<body onload="setDate(); class="service text-center" id="service">
+	<br><br><br><br>
+	<!-- about section -->
+	<section class="service text-center" id="service">
+		<div class="container">
+			<div class="row">
+				<h2 style="font-size: 40px; margin-top: 30px;">Book Appointment</h2>
+				<br><br><br>
+				<!-- Doctor Section -->
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+						</div>
+							<div class="about-details">
+								<div class="pentagon-text">
+									 <center><h1>D</h1></center>
+								</div>
+									 <center><h3>Doctor</h3></center>
+									<hr>
+									<p style="text-align:left;">
+									Education &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.degree}}<br><br>
+									 Doctor Name &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.fname}} {{doctor.lname}}<br><br>
+									Hours&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.time_slot}}<br><br>
+									consulting Charge&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{doctor.consulting_charge}}<br><br>
+									{{doctor.address}}</p>
+									<input class="btn btn-primary" type="button" value="Doctor Details" disabled="disabled" style="padding:15px 132px; font-size: 23px; border: none;">
+							</div>
+					</div>
+
+				</div>
+
+				<!-- Patient Section -->
+
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+						</div>
+							<div class="about-details">
+								<div class="pentagon-text">
+									 <center><h1>P</h1></center>
+								</div>
+								 <center><h3>Patient</h3></center>
+									<hr>
+									<p style="text-align:left;">
+									First Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{patient.fname}} <br><br>
+									Last Name &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{patient.lname}}<br><br>
+									Mobile &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{patient.mobile}}<br><br>
+									Email &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{patient.email}}<br><br>
+									Patient History&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{patient.patient_history}}<br><br>
+									</p>
+									<input class="btn btn-primary" type="button" value="Patient Details" disabled="disabled" style="padding:15px 131px; font-size: 23px; border: none;">
+							</div>
+					</div>
+
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+						</div>
+							<div class="about-details">
+								<div class="pentagon-text">
+								   <center><h1>B</h1></center>
+								</div>
+									 <center><h3>Booking</h3></center>
+									<hr>
+									<p style="text-align:left;">
+									<form  style="height: 236px;" name="book_appointment" method="post" action="{% url 'book_appointment' pk=doctor.pk %}">
+										{% csrf_token %}
+										<table style="color: white;font:status-bar;margin-left: 10px;margin-top: -24px;">
+											<tr>
+												<td style=" font-size: 15px; ">Date</td>
+												{% if appointment_date %}
+												<td style="padding-left: 121px; color: black;"><input id="appointment_date" type="Date" value="{{appointment_date}}" name="appointment_date" required="required" onchange="this.form.submit()"></td>
+												{% else %}
+												<td style="padding-left: 121px; color: black;"><input type="Date" name="appointment_date" id="appointment_date" required="required" onchange="this.form.submit()"></td>
+
+												{% endif %}
+											</tr>
+											<tr>
+												<td style=" font-size: 15px; ">Time</td>
+												<td style="padding-left: 120px; color: black;">
+													<select name="appointment_time">
+														<option>-SELECT YOUR TIME-</option>
+												
+														{% for i in l3 %}
+
+															<option value="{{i}}">{{i}}</option>
+
+														{% endfor %}
+
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td style=" font-size: 15px; ">Symtoms</td>
+												<td><textarea style="margin-left: 40%; color: black;" rows="4" cols="22" name="symptoms" required="required"></textarea></td>
+											</tr>
+										</table>
+										<br>
+												<p style="margin-top: -10px; margin-left: -90px; font-size: 15px;">Appointment Fees&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.consulting_charge}}</p>
+											<input class="btn btn-danger" name="ba" type="Submit" value="Book Appointment" style="padding:15px 118px; font-size: 23px; margin-top: -28px;">
+									</form>
+									</p>
+							</div>
+					</div>
+
+				</div>
+
+			</div>
+			{% if msg %}
+		<center><b style="color:black; font-size: 30px;">{{msg}}</b></center>
+		{% endif %}  
+		
+		</div>
+
+		<br><br>
+	</section><!-- end of about section -->
+	<br>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+{% endblock %}

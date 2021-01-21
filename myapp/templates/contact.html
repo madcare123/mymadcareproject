@@ -1,0 +1,87 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		tr,td{
+			padding: 5px;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+
+	<br>
+	<div class="service text-center" id="service">
+			<center>
+				<section class="about text-center" id="about">
+				<div class="container">
+				<div class="row">
+				<div class="team-heading text-center">	
+				<h2>CONTACT Us</h2>
+				</div>
+				</div>
+				</div>
+				</section>
+				<h3>
+					{% if msg %}
+					{{msg}}
+					{% endif %}
+				</h3>	
+				<font size="5px">
+			<form name="contact" method="post" action="{% url 'contact' %}">
+				{% csrf_token %}
+				<table style="margin:5px; color: white">
+					<tr>
+						<td>Name</td>
+						<td><input type="text" name="name" class="form-control form-control-lg" required="required"></td>
+					</tr>
+						<td>Email</td>
+						<td><input type="text" name="email" class="form-control form-control-lg" required="required"></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="text" name="mobile" class="form-control form-control-lg" required="required"></td>
+					</tr>
+					<tr>
+						<td>Remarks</td>
+						<td><textarea rows="5" cols="22" name="remarks" required="required"></textarea></td>
+					</tr>
+				</table>
+				<input type="submit" value="Submit" class="btn btn-danger" style="width:200px;
+				margin-left: 69px; font-size:20px;">
+
+			</form>
+			</font>
+			</center>
+			<br><br><br><br>
+			</div>
+			<h3>
+			<hr>
+			{% for i in contacts %}
+				<p style="color: #3C9FC8;"><b>Name&nbsp;&nbsp;:&nbsp;&nbsp;{{i.name}}</b><p>
+				<p style="color: black;"><b>Remarks&nbsp;&nbsp;:&nbsp;&nbsp;</b>{{i.remarks}}</p>
+				<hr>	
+			{% endfor %}
+			<h3>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

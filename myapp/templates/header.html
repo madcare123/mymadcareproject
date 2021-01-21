@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Medcare</title>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+	<script src="{% static 'js/modernizr.js' %}"></script>
+	<script src="{% static 'js/jquery-2.1.1.js' %}"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="{% static 'js/gmaps.js' %}"></script>
+	<script src="{% static 'js/smoothscroll.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	
+	<!-- ====================================================
+	header section -->
+	<header class="top-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2 header-logo">
+					<br>
+					<a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt="" class="img-responsive logo"></a>
+				</div>
+
+				<div class="col-md-9">
+					<nav class="navbar navbar-default">
+					  <div class="container-fluid nav-bar">
+					    <!-- Brand and toggle get grouped for better mobile display -->
+					    <div class="navbar-header">
+					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					        <span class="sr-only">Toggle navigation</span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					      </button>
+					    </div>
+
+					    <!-- Collect the nav links, forms, and other content for toggling -->
+					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					      
+					      <ul class="nav navbar-nav navbar-right">
+					        <li><a class="menu active" href="{% url 'index' %}" >Home</a></li>
+					        <li><a class="menu" href="{% url 'about' %}">Book Appointment</a></li>
+					        {% if request.session.email %}
+					        <li><a class="menu" href="{% url 'my_appointments' %}">My Appointments</a></li>
+					        {% else %}
+					        <li><a class="menu" href="{% url 'index' %}">My Appointments</a></li>
+					        {% endif %}
+					        <li><a class="menu" href="{% url 'contact' %}"> contact us</a></li>
+					        {% if request.session.email %}
+					        <li><a class="menu" href="{% url 'logout' %}">Logout &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ request.session.fname }} &nbsp;{{ request.session.lname }}</a></li>
+					        {% else %}
+					        <li><a class="menu" href="{% url 'login' %}">Login</a></li>
+					        <li><a class="menu" href="{% url 'signup' %}">Sign Up</a></li>
+					        {% endif %}
+					        
+					      </ul>
+					    </div><!-- /navbar-collapse -->
+					  </div><!-- / .container-fluid -->
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header> <!-- end of header area -->
+
+	{% block content %}
+	{% endblock %}
+
+</body>
+</html>

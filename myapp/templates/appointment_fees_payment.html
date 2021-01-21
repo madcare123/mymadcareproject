@@ -1,0 +1,82 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		tr,td{
+			padding: 5px;
+		}
+	</style>
+	<title></title>
+	<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<body>
+
+	<br>
+	<div class="service text-center" id="service">
+			<center>
+				<section class="about text-center" id="about">
+				<div class="container">
+				<div class="row">
+				<div class="team-heading text-center">	
+				<h2>Appointment Fees</h2>
+				</div>
+				</div>
+				</div>
+				</section>
+
+				<font size="5px">
+			<form name="contact" method="post" action="{% url 'pay' %}">
+				{% csrf_token %}
+				<br>
+				<table style="margin:5px; color: white">
+				</table>
+				<tr>
+					<td><input type="hidden" name="appointment_id" value="{{appointment.id}}"></td>
+				</tr>
+				<tr>
+					<td><p style="color: white;">Amount</p></td>
+					<td><input style="text-align: center;" type="text" name="appointment_fees" readonly="readonly" value="{{appointment.doctor.consulting_charge}}"></td>
+				</tr>
+				<tr>
+					<td>
+						<center>
+							<a href="#"><input type="submit" value="Pay" class="btn btn-danger" style="width:120px;
+							margin-left: 0px; font-size:20px;margin-top: 30px;"></a>
+						</center>
+					</td>
+				</tr>
+
+			</form>
+			</font>
+		</center>
+		<br><br><br><br><br><br><br><br><br>
+	</div>
+		
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

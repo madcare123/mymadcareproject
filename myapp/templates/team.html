@@ -1,0 +1,103 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<br><br>
+	<!-- team section -->
+	<div class="service text-center" id="service">
+	<section class="team" id="team">
+		<div class="container">
+			<div class="row">
+				<div class="team-heading text-center">
+					<h2 style="color: white;">our team</h2>
+					<marquee direction="right" behavior="alternate" scrollamount="5"><h4 style="color:white;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4></marquee>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member1.jpg' %}" alt="member-1">
+					</div>
+					<div class="person-detail">
+						<div class="arrow-bottom"></div>
+						<h3>Dr. M. Weiner, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person-detail">
+						<div class="arrow-top"></div>
+						<h3>Dr. Danielle, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member2.jpg' %}" alt="member-2">
+					</div>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member3.jpg' %}" alt="member-3">
+					</div>
+					<div class="person-detail">
+						<div class="arrow-bottom"></div>
+						<h3>Dr. Caitlin, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person-detail">
+						<div class="arrow-top"></div>
+						<h3>Dr. Joseph, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member4.jpg' %}" alt="member-4">
+					</div>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member5.jpg' %}" alt="member-5">
+					</div>
+					<div class="person-detail">
+						<div class="arrow-bottom"></div>
+						<h3>Dr. Michael, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+				</div>
+				<div class="col-md-2 single-member col-sm-4">
+					<div class="person-detail">
+						<div class="arrow-top"></div>
+						<h3>Dr. Hasina, M.D.</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
+					<div class="person">
+						<img class="img-responsive" src="{% static 'img/member6.jpg' %}" alt="member-5">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- end of team section -->
+</div>
+				<!-- footer starts here -->
+				<footer class="footer clearfix">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6 footer-para">
+								<p>&copy;Rajeev Prajapati All right reserved</p>
+							</div>
+							<div class="col-xs-6 text-right">
+					<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+					<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+					<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+				</div>
+						</div>
+					</div>
+				</footer>
+
+</body>
+</html>
+{% endblock %}

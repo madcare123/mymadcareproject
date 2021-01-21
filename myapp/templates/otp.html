@@ -1,0 +1,75 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+		<body>
+			<head>
+				<style type="text/css">
+					
+					#example {
+						width: 100px;
+
+					}
+					table, td, th{
+						padding: 5px;
+					}
+				</style>
+
+			</head>
+					
+			<br><br><br><br>
+			<div class="service text-center" id="service">
+			<center>
+				<section class="about text-center" id="about">
+				<div class="container">
+				<div class="row">
+				<div class="team-heading text-center">	
+				<h2>Enter OTP</h2>
+				</div>
+				</div>
+				</div>
+				</section>
+				<h3>
+					{% if msg %}
+					{{msg}}
+					{% endif %}
+				</h3>
+				<font size="5px">
+			<form name="otp" method="post" action="{% url 'verify_otp' %}">
+				{% csrf_token %}
+				<table style="margin:5px;">
+					<tr>
+						<td><input type="hidden" name="otp" value="{{otp}}"></td>
+						<td><input type="hidden" name="email" value="{{email}}"></td>
+					</tr>
+					<tr>
+						<td>Enter OTP</td>
+						<td><input type="password" name="uotp" class="form-control form-control-lg" required="required"></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Verify" class="btn btn-danger" style="width: 100px; margin-left: 50px; font-size: 20px;">
+
+			</form>
+			</font>
+			</center>
+			<div>
+			<br><br><br><br><br><br><br>
+						<!-- footer starts here -->
+				<footer class="footer clearfix">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6 footer-para">
+								<p>&copy;Rajeev Prajapati All right reserved</p>
+							</div>
+							<div class="col-xs-6 text-right">
+					<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+					<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+					<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+				</div>
+						</div>
+					</div>
+				</footer>
+		</body>
+</html>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'doctor_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		p{
+			padding:px;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<br>
+	<!-- about section -->
+	<div class="service text-center" id="service">
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>View Appointments</h2>
+				<br><br><br><br><br>
+				{% for i in appointments %}
+				<div class="col-md-4 col-sm-6" style="margin-bottom: 80px;">
+					<div class="single-about-detail clearfix">
+						<a href="#">
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{forloop.counter}}</h1>
+								</div>
+									<h3>{{i.patient.fname}}&nbsp; {{i.patient.lname}}</h3>
+									<p>History&nbsp;:&nbsp;{{i.patient.patient_history}}</p>
+									<p>Date&nbsp;:&nbsp;{{i.appointment_date}}</P>
+									<p>Time&nbsp;:&nbsp;{{i.appointment_time}}</p>
+									<p>Status&nbsp;:&nbsp;{{i.status}}</p>
+
+
+							</div>
+						</a>
+					</div>
+					{% if i.status == 'pending' %}
+					<a href="{% url 'complete_appointment' pk=i.pk %}">
+					<input class="btn btn-danger" type="button" value="Complete" style=" margin-top:-15px; padding:15px 149px; font-size: 23px; border: none;"></a>
+					{% else %}
+					
+					<input class="btn btn-danger" type="button" value="Completed" style=" margin-top:-10px; padding:15px 145px; font-size: 23px; border: none;" disabled="disabled">
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section><!-- end of about section -->
+	<br><br><br>
+	</div>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Rajeev Prajapati All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+									<a href="https://gmail.com/"><i class="fa fa-google"></i></a>
+									<a href="https://instagram.com/"><i class="fa fa-instagram"></i></a>
+								</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+{% endblock %}
